@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "helm-deel-ip-reverse.fullname" . }}
+  labels:
+    app: {{ template "helm-deel-ip-reverse.name" . }}
+    chart: {{ template "helm-deel-ip-reverse.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "helm-deel-ip-reverse.name" . }}
+    release: {{ .Release.Name }}
