@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: argo-service
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: argocd-server.argocd.svc.cluster.local
+  ports:
+  - port: 80
+  - targetPort: 80
